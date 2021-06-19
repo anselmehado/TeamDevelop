@@ -25,11 +25,13 @@ class AgendasController < ApplicationController
     @station = @property.stations.create
   end
 
+
+
   def destroy
-    
-    @agenda = @article.agenda.find(params[:id])
-    if @agenda = current_user.keep_team_id
-      @agenda.delete
+
+    @agenda = Agenda.find(params[:id])
+      if @agenda = current_user.keep_team_id
+        @agenda.delete
 
       flash[:notice] = 'agenda  deleted!'
       redirect_to root_path
