@@ -11,6 +11,7 @@ class AgendasController < ApplicationController
   end
 
   def create
+
     @agenda = current_user.agendas.build(title: params[:title])
     @agenda.team = Team.friendly.find(params[:team_id])
     current_user.keep_team_id = @agenda.team.id
@@ -21,20 +22,14 @@ class AgendasController < ApplicationController
     end
   end
 
-  def edit
-    @station = @property.stations.create
-  end
-
-
 
   def destroy
 
     @agenda = Agenda.find(params[:id])
       if @agenda = current_user.keep_team_id
         @agenda.delete
-
-      flash[:notice] = 'agenda  deleted!'
-      redirect_to root_path
+        AgendaMailer.agenda_mail(@agenda).deliver  ##Addendum
+        redirect_to agendas_path, notice: 'agenda was successfully deleted.'
     else
       flash[:error] = 'echec de suprsession'
       render :destroy

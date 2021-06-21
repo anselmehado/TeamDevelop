@@ -50,11 +50,11 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-
-    if @team.owner = current_user
+  if @team.owner = current_user
     @team.destroy
     redirect_to teams_url, notice: I18n.t('views.messages.delete_team')
   end
+end 
 
   def dashboard
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first
