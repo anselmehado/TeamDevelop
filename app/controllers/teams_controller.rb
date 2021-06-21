@@ -16,7 +16,12 @@ class TeamsController < ApplicationController
   end
 
   def edit
+      if @team.owner = current_user
 
+     flash.now[:error] = 'edition avec succes!'
+     redirect_to teams_path
+
+  end
 
   end
 
@@ -34,7 +39,10 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
+
+
       redirect_to @team, notice: I18n.t('views.messages.update_team')
+
     else
       flash.now[:error] = I18n.t('views.messages.failed_to_save_team')
       render :edit
@@ -42,6 +50,8 @@ class TeamsController < ApplicationController
   end
 
   def destroy
+
+    if @team.owner = current_user
     @team.destroy
     redirect_to teams_url, notice: I18n.t('views.messages.delete_team')
   end
