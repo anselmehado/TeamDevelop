@@ -49,6 +49,8 @@
               <li class="nav-item">
                 <%= link_to new_agenda_article_path(agenda), class: 'nav-link' do %>
                   <p>+ <%= I18n.t('views.messages.create_article') %></p><br>
+                <% end %>
+                <%= link_to new_agenda_article_path(agenda), class: 'nav-link' do %>
                   <p><%= I18n.t('views.messages.delete_agenda') %></p>
                 <% end %>
               </li>

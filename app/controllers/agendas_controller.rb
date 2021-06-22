@@ -28,6 +28,7 @@ class AgendasController < ApplicationController
     @agenda = Agenda.find(params[:id])
       if @agenda = current_user.keep_team_id
         @agenda.delete
+      
         AgendaMailer.agenda_mail(@agenda).deliver  ##Addendum
         redirect_to agendas_path, notice: 'agenda was successfully deleted.'
     else

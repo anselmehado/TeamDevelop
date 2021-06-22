@@ -258,6 +258,7 @@ en:
       team_members2: 'Team Members'
       edit_team: 'Edit Team'
       invite_team_member: 'Invite a team member'
+
       team_leader: 'Team Leader'
       leader: 'Leader'
       invitation_placeholder: 'Enter the email address of the person you want to invite'
